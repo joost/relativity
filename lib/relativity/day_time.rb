@@ -22,8 +22,8 @@ class DayTime
   end
 
   def hours
-    hours = Integer(@seconds_since_start/(3600)).tap do |h|
-      raise "Internal ERROR in DayTime; hours is #{h}" if (h < 0 || h > 23)
+    hours = Integer(@seconds_since_start/3600).tap do |h|
+      raise Relativity::InternalError, "hours is out of bound : #{h}" if (h < 0 || h > 23)
     end
   end
 
