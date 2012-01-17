@@ -6,8 +6,8 @@ describe WeekTime do
     lambda { subject }.should_not raise_error
   end
 
-  it "seconds_since_monday_midnight" do
-    lambda { subject.seconds_since_monday_midnight }.should_not raise_error
+  it "seconds_since_sunday_midnight" do
+    lambda { subject.seconds_since_sunday_midnight }.should_not raise_error
   end
 
 end
