@@ -14,7 +14,7 @@ be built on top, so the ranges of opening hours can be represented.
   closes_at = DayTime.new(18,30) #=> 18:30:00
 
   dt = DayTime.new #=> 21:17:40
-  dt.seconds_since_start #=> #<BigDecimal:9d35d48,'0.7666056825 7238E5',18(45)>
+  dt.seconds_since_midnight #=> #<BigDecimal:9d35d48,'0.7666056825 7238E5',18(45)>
   dt.hours #=> 21
   dt.minutes #=> 17
   dt.seconds #=> 40
