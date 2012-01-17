@@ -1,3 +1,10 @@
+0.0.4 2012-01-17:
+
+* Revert seconds_since_start to seconds_since_midnight
+  ("start" was arbitrary; "midnight" is a real world reference)
+
+* Added an Relativity::Exception class
+
 0.0.3 2012-01-12
 
 * Change RelativeTime into DayTime

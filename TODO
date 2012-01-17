@@ -1,7 +1,3 @@
-Refactoring:
-
-* make an Exception class
-
 Features to be implemented:
 
 week_time = WeekTime.new
