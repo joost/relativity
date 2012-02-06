@@ -18,9 +18,9 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_development_dependency 'rspec', '>= 2.7'
-  s.add_development_dependency 'guard-rspec', '>= 0.5'
-  if RUBY_PLATFORM.match(/linux/)
-    s.add_development_dependency 'rb-inotify'
-    s.add_development_dependency 'libnotify'
-  end
+  # this will only work on Linux, so commented out by default
+  # for Mac use an alternative strategy
+  # s.add_development_dependency 'guard-rspec', '>= 0.5'
+  # s.add_development_dependency 'rb-inotify'
+  # s.add_development_dependency 'libnotify'
 end
