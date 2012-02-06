@@ -1,6 +1,8 @@
 class DayTime
 
   require 'bigdecimal'
+  require 'relativity/day_time/comparison'
+  include DayTime::Comparison
 
   attr_reader :seconds_since_midnight
 
