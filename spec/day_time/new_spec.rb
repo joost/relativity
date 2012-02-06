@@ -47,7 +47,7 @@ describe DayTime do
     dt.nano_seconds.should == 0
   end
 
-  it 'new with string argument 8:35"' do
+  it 'new with string argument "8:35"' do
     dt = DayTime.new("8:35")
     dt.hours.should == 8
     dt.minutes.should == 35
