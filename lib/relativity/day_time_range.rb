@@ -17,10 +17,15 @@ class DayTimeRange
     @end_day_time
   end
 
+  def self.separator
+    " until "
+  end
+
 private
 
   def range_from_string(input)
-    r = /(?<start>.+) until (?<end>.+)/
+    matcher = "(?<start>.+)#{self.class.separator}(?<end>.+)"
+    r = Regexp.new(matcher)
     matchdata = r.match(input)
     return [DayTime.new(matchdata[:start]), DayTime.new(matchdata[:end])]
   end
