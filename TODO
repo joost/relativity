@@ -10,3 +10,75 @@ week_time_range
 week_day_range
 
 ActiveRecord coupling (Aggregation ?)
+
+=====================================
+A discussion I sent on 2012-01-12 on ruby-talk:
+
+Also, in version 0.0.3 that is now online, I changed the concept more
+fundamentally to #{"period"Time} and #{"period"Day}:
+
+* DayTime (a time inside a "cycle" of 1 day, think %)
+* planning also this
+* WeekTime (a time inside a "cycle" of 1 week, no start_of_week needed, just time + day names)
+* WeekDay (a day inside a "cycle" of 1 week, no start_of_week (cyclical), just a day names)
+* QuarterDay etc.
+* DayTimeRange
+* WeekTimeRange
+* WeekDayRange
+etc.
+
+Will be really useful to code things like:
+
+bar.opening_hours = WeekTimeMultiRange.new <<
+  WeekTimeRange.new("Monday 09:00 until Monday 18:00") <<
+  WeekTimeRange.new("Tuesday 13:00 until Tuesday 21:30") <<
+  WeekTimeRange.new(WeekTime.new("Wednesday 19:00"), WeekTime.new("Thursday 02:00")) <<
+  WeekTimeRange.new("Thursday 22:00 until Friday 02:00") <<
+  WeekTimeRange.new("Sunday 22:00 until Monday 02:00")  # seeming "overflow" but no issue since cyclical
+
+if bar.opening_hours.include?(Time.now)
+  display_open
+end
+
+workdays = WeekDayRange.new("Monday until Friday")
+
+if workdays.include?(Time.now)
+ go_to_work
+end
+
+Also, what I really want to do is an abstract presentation of
+the "last day of the month" (independent of the which month
+we are actually in, just the abstract concept).
+
+first_day = MonthDay.new(:first)
+first_day = MonthDay.new(1) # in days, the first is 1 (not 0) ... Pascal anyone ;-)
+
+last_day = MonthDay.new(:last)
+last_day = MonthDay.new(0) # logically, the last one then becomes 0 in a cyclic counter
+before_last_day = MonthDay.new(-1) # E.g. 30 Dec is a before_last_day
+pay_day = MonthDay.new(-5) # E.g. 26 Jan would be pay_day in monthly scheme
+
+if pay_day.today?
+  prepare_paycheck
+end
+
+Similar:
+
+reporting_day = QuarterDay.new(+15)
+blocked_period = QuarterDayRange(reporting_day-28, reporting_day+1)
+
+if reporting_day.today?
+  publish_quarterly_reports
+end
+
+if blocked_period.today?
+  forbid_employee_stock_transactions
+end
+
+I know ActiveSupport has support for certain aspects, but I dont think it is
+as abstract as I want it. IIRC , ActiveSupport works on actual Date instances
+(which are not "relative" but anchored to a specific absolute time or date).
+I did not see this abstract concept of the "last day of the month" or
+"a Friday in a random week" fully implemented.
+
+
