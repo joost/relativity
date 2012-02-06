@@ -28,6 +28,7 @@ private
   def hh_mm_ss_from_string(input)
     separator = self.class.separator
     separator = Regexp.escape(separator) # e.g. separator is '.'
+    input.strip!
     match_hh = '(?<hh>\d\d?)'
     match_mm = '(' + separator + '(?<mm>\d\d?))?'
     match_ss = '(' + separator + '(?<ss>\d\d?))?'

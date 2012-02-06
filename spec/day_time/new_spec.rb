@@ -64,7 +64,6 @@ describe DayTime do
   end
 
   it 'new with string does implicit strip' do
-    pending ("TODO")
     dt = DayTime.new(" 8:35:30 ")
     dt.hours.should == 8
     dt.minutes.should == 35
