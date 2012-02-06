@@ -1,3 +1,9 @@
+0.0.5 2012-02-06:
+
+* DayTimeRange can now be created
+
+* DayTime.new("8:30") now takes a string
+
 0.0.4 2012-01-17:
 
 * Revert seconds_since_start to seconds_since_midnight
