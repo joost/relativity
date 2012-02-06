@@ -4,8 +4,8 @@ Time, Date and DateTime classes don't have a mode for working with relative
 time inside 1 day (or 1 week, 1 month, 1 quarter, etc.).
 
 A relative time object, relative to a day or a week, is useful to describe
-e.g. opening hours of a business. In a next phase, time ranges will
-be built on top, so the ranges of opening hours can be represented.
+e.g. opening hours of a business. Time ranges are built on top, so the 
+ranges of opening hours can be represented.
 
 == Example
 
