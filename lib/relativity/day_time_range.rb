@@ -5,7 +5,7 @@ class DayTimeRange
     @start_day_time, @end_day_time =
       case first
       when String
-        range_from_string(first, second)
+        start_end_from_string(first, second)
       end
   end
 
@@ -23,9 +23,10 @@ class DayTimeRange
 
 private
 
-  def range_from_string(input, options)
+  def start_end_from_string(input, options)
     separator = (options && options[:separator]) || self.class.separator
-    matcher = "(?<start>.+)#{separator}(?<end>.+)"
+    separator = Regexp.escape(separator)
+    matcher = '\A(?<start>.+)' + separator + '(?<end>.+)\Z'
     r = Regexp.new(matcher)
     matchdata = r.match(input)
     return [DayTime.new(matchdata[:start]), DayTime.new(matchdata[:end])]

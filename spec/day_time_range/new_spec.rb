@@ -6,24 +6,20 @@ describe DayTimeRange do
     lambda { DayTimeRange.new("8 until 11") }.should_not raise_error
   end
 
-  it "start time is correct" do
+  it "start day_time is correct" do
     dtr = DayTimeRange.new("8 until 11")
     dtr.start.should == DayTime.new(8)
   end
 
-  it "end time is correct" do
+  it "end day_time is correct" do
     dtr = DayTimeRange.new("8 until 11")
     dtr.end.should == DayTime.new(11)
   end
 
-  it "start time is correct" do
-    dtr = DayTimeRange.new("15 until 9")
-    dtr.start.should == DayTime.new(15)
-  end
-
-  it "end time is correct" do
-    dtr = DayTimeRange.new("15 until 9")
-    dtr.end.should == DayTime.new(9)
+  it "day_times are correct with complex time" do
+    dtr = DayTimeRange.new("8:35 until 17:59:30")
+    dtr.start.should == DayTime.new(8,35)
+    dtr.end.should == DayTime.new(17,59,30)
   end
 
 end

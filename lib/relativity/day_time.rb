@@ -6,13 +6,17 @@ class DayTime
 
   attr_reader :seconds_since_midnight
 
-  def initialize(hours = nil, minutes = nil, seconds = nil, nano_seconds = nil)
+  def initialize(first= nil, minutes = nil, seconds = nil, nano_seconds = nil)
     super()
-    if hours
-      hh = hours.to_i
-      mm = minutes.to_i
-      ss = seconds.to_i
-      nn = nano_seconds.to_i
+    case first
+    when Integer
+      hh = first #hours
+      mm = minutes || 0
+      ss = seconds || 0
+      nn = nano_seconds || 0
+    when String
+      hh, mm, ss = hh_mm_ss_from_string(first)
+      nn = 0
     else
       t = Time.new
       hh = t.hour
@@ -42,13 +46,29 @@ class DayTime
   end
 
   def to_s
-    [hours, minutes, seconds].map{|e| rjust_2_0(e.to_s)}.join(':')
+    [hours, minutes, seconds].map{|e| rjust_2_0(e.to_s)}.join(self.class.separator)
   end
+
+  def self.separator
+    ':'
+  end
+
+private
 
   def rjust_2_0(s)
     s.rjust(2,'0')
   end
 
-  private :rjust_2_0
+  def hh_mm_ss_from_string(input)
+    separator = self.class.separator
+    separator = Regexp.escape(separator) # e.g. separator is '.'
+    match_hh = '(?<hh>\d\d?)'
+    match_mm = '(' + separator + '(?<mm>\d\d?))?'
+    match_ss = '(' + separator + '(?<ss>\d\d?))?'
+    matcher = '\A' + match_hh + match_mm + match_ss + '\Z'
+    r = Regexp.new(matcher)
+    matchdata = r.match(input)
+    return [matchdata[:hh].to_i, matchdata[:mm].to_i, matchdata[:ss].to_i]
+  end
 
 end

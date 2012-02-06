@@ -11,7 +11,10 @@ be built on top, so the ranges of opening hours can be represented.
 
   require 'relativity'
   opens_at = DayTime.new(9) #=> 09:00:00
-  closes_at = DayTime.new(18,30) #=> 18:30:00
+  closes_at = DayTime.new(12,30) #=> 12:30:00
+
+  opens_at = DayTime.new("8:35") #=> 08:35:00
+  closes_at = DayTime.new("17:59:30") #=> 17:59:30
 
   dt = DayTime.new #=> 21:17:40
   dt.seconds_since_midnight #=> #<BigDecimal:9d35d48,'0.7666056825 7238E5',18(45)>
@@ -19,3 +22,11 @@ be built on top, so the ranges of opening hours can be represented.
   dt.minutes #=> 17
   dt.seconds #=> 40
   dt.nano_seconds #=> 568257238
+
+  dtr = DayTimeRange.new("8 until 12:30")
+  # => #<DayTimeRange:0x9bfa4ec @start_day_time=08:00:00, @end_day_time=12:30:00>
+  dtr.start # => 08:00:00
+  dtr.end # => 12:30:00
+
+  night_shift = DayTimeRange.new("21:45..06:05", :separator => '..')
+  # => #<DayTimeRange:0x9b997dc @start_day_time=21:45:00, @end_day_time=06:05:00>
