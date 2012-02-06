@@ -1,4 +1,9 @@
 module Relativity
-  class InternalError < StandardError
+
+  class InternalError < RuntimeError
   end
+
+  class InvalidFormat < ArgumentError
+  end
+
 end

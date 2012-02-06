@@ -35,6 +35,7 @@ private
     matcher = '\A' + match_hh + match_mm + match_ss + '\Z'
     r = Regexp.new(matcher)
     matchdata = r.match(input)
+    raise Relativity::InvalidFormat if matchdata.nil?
     return [matchdata[:hh].to_i, matchdata[:mm].to_i, matchdata[:ss].to_i]
   end
 
