@@ -16,4 +16,14 @@ describe DayTimeRange do
     dtr.end.should == DayTime.new(11)
   end
 
+  it "start time is correct" do
+    dtr = DayTimeRange.new("15 until 9")
+    dtr.start.should == DayTime.new(15)
+  end
+
+  it "end time is correct" do
+    dtr = DayTimeRange.new("15 until 9")
+    dtr.end.should == DayTime.new(9)
+  end
+
 end

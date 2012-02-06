@@ -2,8 +2,11 @@ class DayTimeRange
 
   def initialize(first, second = nil)
     super()
-    @start_day_time = DayTime.new(8)
-    @end_day_time = DayTime.new(11)
+    @start_day_time, @end_day_time =
+      case first
+      when String
+        range_from_string(first)
+      end
   end
 
   def start
@@ -12,6 +15,14 @@ class DayTimeRange
 
   def end
     @end_day_time
+  end
+
+private
+
+  def range_from_string(input)
+    r = /(?<start>.+) until (?<end>.+)/
+    matchdata = r.match(input)
+    return [DayTime.new(matchdata[:start]), DayTime.new(matchdata[:end])]
   end
 
 end
