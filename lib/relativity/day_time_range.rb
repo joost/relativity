@@ -25,10 +25,11 @@ private
 
   def start_end_from_string(input, options)
     separator = (options && options[:separator]) || self.class.separator
-    separator = Regexp.escape(separator)
-    matcher = '\A(?<start>.+)' + separator + '(?<end>.+)\Z'
+    esc_separator = Regexp.escape(separator)
+    matcher = '\A(?<start>.+)' + esc_separator + '(?<end>.+)\Z'
     r = Regexp.new(matcher)
     matchdata = r.match(input)
+    raise Relativity::InvalidRangeFormatError.new(:separator => separator) if matchdata.nil?
     return [DayTime.new(matchdata[:start]), DayTime.new(matchdata[:end])]
   end
 

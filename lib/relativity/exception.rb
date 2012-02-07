@@ -11,7 +11,7 @@ module Relativity
       @options = options
     end
     def to_s
-      "Maybe the range separator was not set correctly? Separtor used was \"#{@options[:separator]}\""
+      "Maybe the range separator was not set correctly? Separator used was \"#{@options[:separator]}\""
     end
   end
 

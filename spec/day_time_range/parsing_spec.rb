@@ -25,4 +25,8 @@ describe DayTimeRange do
     lambda {DayTimeRange.new("8..11")}.should raise_error Relativity::InvalidRangeFormatError
   end
 
+  it "Exception with separator message is raised with incorrect separator format" do
+    lambda {DayTimeRange.new("8..11")}.should raise_error 'Maybe the range separator was not set correctly? Separator used was " until "'
+  end
+
 end

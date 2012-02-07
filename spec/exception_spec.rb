@@ -23,7 +23,7 @@ module Relativity
 
     it "InvalidRangeFormatError gives a tailured message" do
       e = Relativity::InvalidRangeFormatError.new(:separator => "abcd")
-      e.message.should == 'Maybe the range separator was not set correctly? Separtor used was "abcd"'
+      e.message.should == 'Maybe the range separator was not set correctly? Separator used was "abcd"'
     end
 
   end
