@@ -1,25 +1,22 @@
+0.0.6 2012-02-07:
+* DayTimeRange input/output now useable
+* DayTimeRange exceptions improved
+
 0.0.5 2012-02-06:
-
 * DayTimeRange can now be created
-
 * DayTime.new("8:30") now takes a string
 
 0.0.4 2012-01-17:
-
 * Revert seconds_since_start to seconds_since_midnight
-  ("start" was arbitrary; "midnight" is a real world reference)
-
+("start" was arbitrary; "midnight" is a real world reference)
 * Added an Relativity::Exception class
 
 0.0.3 2012-01-12
-
 * Change RelativeTime into DayTime
 * Added an initial DayTimeRange class
 
 0.0.2 2012-01-12
-
 * Add the MIT license
 
 0.0.1 2012-01-11
-
 * Initial version with minimal TimeRelative functionality
