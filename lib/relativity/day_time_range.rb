@@ -1,7 +1,10 @@
 class DayTimeRange
 
+  attr_accessor :separator
+
   def initialize(first, second = nil)
     super()
+    # NOTE don't forget to set the @separator
     @start_day_time, @end_day_time =
       case first
       when String
@@ -18,7 +21,7 @@ class DayTimeRange
   end
 
   def to_s
-    start.to_s + self.class.default_separator + self.end.to_s
+    start.to_s + @separator + self.end.to_s
   end
 
   def self.default_separator
@@ -28,12 +31,12 @@ class DayTimeRange
 private
 
   def start_end_from_string(input, options)
-    separator = (options && options[:separator]) || self.class.default_separator
-    esc_separator = Regexp.escape(separator)
+    @separator = (options && options[:separator]) || self.class.default_separator
+    esc_separator = Regexp.escape(@separator)
     matcher = '\A(?<start>.+)' + esc_separator + '(?<end>.+)\Z'
     r = Regexp.new(matcher)
     matchdata = r.match(input)
-    raise Relativity::InvalidRangeFormatError.new(:separator => separator) if matchdata.nil?
+    raise Relativity::InvalidRangeFormatError.new(:separator => @separator) if matchdata.nil?
     return [DayTime.new(matchdata[:start]), DayTime.new(matchdata[:end])]
   end
 

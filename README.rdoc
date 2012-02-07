@@ -32,3 +32,4 @@ ranges of opening hours can be represented.
 
   night_shift = DayTimeRange.new("21:45..06:05", :separator => '..')
   # => #<DayTimeRange:0x9b997dc @start_day_time=21:45:00, @end_day_time=06:05:00>
+  night_shift.to_s # => "21:45..06:05"

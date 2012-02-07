@@ -29,4 +29,20 @@ describe DayTimeRange do
     lambda {DayTimeRange.new("8..11")}.should raise_error 'Maybe the range separator was not set correctly? Separator used was " until "'
   end
 
+  it "parsing with other separator remembers the separator" do
+    dtr = DayTimeRange.new("8 - 11", :separator => " - ")
+    dtr.separator.should == " - "
+  end
+
+  it "sets the separator" do
+    dtr = DayTimeRange.new("8 - 11", :separator => " - ")
+    dtr.separator = ".."
+    dtr.separator.should == ".."
+  end
+
+  it "not setting separator returns default_separator" do
+    dtr = DayTimeRange.new("8 until 11")
+    dtr.separator.should == dtr.class.default_separator
+  end
+
 end
