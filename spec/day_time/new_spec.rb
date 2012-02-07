@@ -70,7 +70,7 @@ describe DayTime do
   end
 
   it 'new with string rejects too much separators' do
-    lambda { DayTime.new("8:35:30:45") }.should raise_error Relativity::InvalidFormat
+    lambda {DayTime.new("8:35:30:45")}.should raise_error Relativity::InvalidFormatError
   end
 
 end

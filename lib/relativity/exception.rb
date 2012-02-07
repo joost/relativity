@@ -3,7 +3,7 @@ module Relativity
   class InternalError < RuntimeError
   end
 
-  class InvalidFormat < ArgumentError
+  class InvalidFormatError < ArgumentError
   end
 
 end
