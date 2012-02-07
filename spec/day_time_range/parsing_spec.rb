@@ -21,4 +21,8 @@ describe DayTimeRange do
     dtr.start.should == DayTime.new(8)
   end
 
+  it "InvalidRangeFormatError is raised with incorrect separator format" do
+    lambda {DayTimeRange.new("8..11")}.should raise_error Relativity::InvalidRangeFormatError
+  end
+
 end

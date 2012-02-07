@@ -6,4 +6,7 @@ module Relativity
   class InvalidFormatError < ArgumentError
   end
 
+  class InvalidRangeFormatError < ArgumentError
+  end
+
 end

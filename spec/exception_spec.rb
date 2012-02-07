@@ -12,5 +12,9 @@ module Relativity
       Relativity::InvalidFormatError.new.should be_a(ArgumentError)
     end
 
+    it "InvalidRangeFormatError derived from ArgumentError" do
+      Relativity::InvalidRangeFormatError.new.should be_a(ArgumentError)
+    end
+
   end
 end
