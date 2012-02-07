@@ -8,6 +8,10 @@ module Relativity
 
   class InvalidRangeFormatError < ArgumentError
     def initialize(options = {})
+      @options = options
+    end
+    def to_s
+      "Maybe the range separator was not set correctly? Separtor used was \"#{@options[:separator]}\""
     end
   end
 
