@@ -19,11 +19,7 @@ module DayTime::Conversions
   end
 
   def to_s
-    [hours, minutes, seconds].map{|e| rjust_2_0(e.to_s)}.join(self.class.separator)
-  end
-
-  def self.separator
-    ':'
+    [hours, minutes, seconds].map{|e| rjust_2_0(e.to_s)}.join(self.class.default_separator)
   end
 
 private

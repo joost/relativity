@@ -18,17 +18,17 @@ class DayTimeRange
   end
 
   def to_s
-    start.to_s + self.class.separator + self.end.to_s
+    start.to_s + self.class.default_separator + self.end.to_s
   end
 
-  def self.separator
+  def self.default_separator
     " until "
   end
 
 private
 
   def start_end_from_string(input, options)
-    separator = (options && options[:separator]) || self.class.separator
+    separator = (options && options[:separator]) || self.class.default_separator
     esc_separator = Regexp.escape(separator)
     matcher = '\A(?<start>.+)' + esc_separator + '(?<end>.+)\Z'
     r = Regexp.new(matcher)

@@ -8,7 +8,7 @@ class DayTime
   include DayTime::New
   include DayTime::Conversions
 
-  def self.separator
+  def self.default_separator
     ':'
   end
 

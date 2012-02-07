@@ -26,12 +26,12 @@ module DayTime::New
 private
 
   def hh_mm_ss_from_string(input)
-    separator = self.class.separator
-    separator = Regexp.escape(separator) # e.g. separator is '.'
+    separator = self.class.default_separator
+    esc_separator = Regexp.escape(separator) # e.g. separator is '.'
     input.strip!
     match_hh = '(?<hh>\d\d?)'
-    match_mm = '(' + separator + '(?<mm>\d\d?))?'
-    match_ss = '(' + separator + '(?<ss>\d\d?))?'
+    match_mm = '(' + esc_separator + '(?<mm>\d\d?))?'
+    match_ss = '(' + esc_separator + '(?<ss>\d\d?))?'
     matcher = '\A' + match_hh + match_mm + match_ss + '\Z'
     r = Regexp.new(matcher)
     matchdata = r.match(input)

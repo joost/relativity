@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DayTimeRange do
 
   it "default separator is ' until '" do
-    DayTimeRange.separator.should == ' until '
+    DayTimeRange.default_separator.should == ' until '
   end
 
   it "start time is correct" do
