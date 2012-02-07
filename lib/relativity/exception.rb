@@ -7,6 +7,8 @@ module Relativity
   end
 
   class InvalidRangeFormatError < ArgumentError
+    def initialize(options = {})
+    end
   end
 
 end
