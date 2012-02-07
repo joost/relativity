@@ -11,12 +11,12 @@ describe DayTimeRange do
     dtr.start.should == DayTime.new(8)
   end
 
-  it "start time is correct with other separator" do
+  it "parsing is correct with other separator" do
     dtr = DayTimeRange.new("8 - 11", :separator => " - ")
     dtr.start.should == DayTime.new(8)
   end
 
-  it "start time is correct with separator without spaces" do
+  it "parsing is correct with separator without spaces" do
     dtr = DayTimeRange.new("8..11", :separator => "..")
     dtr.start.should == DayTime.new(8)
   end
