@@ -17,6 +17,10 @@ class DayTimeRange
     @end_day_time
   end
 
+  def to_s
+    start.to_s + self.class.separator + self.end.to_s
+  end
+
   def self.separator
     " until "
   end
