@@ -1,15 +1,14 @@
 Features to be implemented:
 
-week_time = WeekTime.new
-week_day = WeekDay.new
+* Add a '...' range (up to, but not including)
+* ActiveRecord coupling (marshal to and from string)
 
-day_times (array of day_time entries)
+* WeekTime
+* WeekDay
 
-day_time_range (range of days_time entries)
-week_time_range
-week_day_range
+* WeekTimeRange
+* WeekDayRange
 
-ActiveRecord coupling (Aggregation ?)
 
 =====================================
 A discussion I sent on 2012-01-12 on ruby-talk:
@@ -80,5 +79,3 @@ as abstract as I want it. IIRC , ActiveSupport works on actual Date instances
 (which are not "relative" but anchored to a specific absolute time or date).
 I did not see this abstract concept of the "last day of the month" or
 "a Friday in a random week" fully implemented.
-
-
