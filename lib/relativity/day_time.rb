@@ -25,4 +25,9 @@ class DayTime
     match_hh + match_mm + match_ss
   end
 
+  def self.normalize(*args)
+    return nil if args == [nil]
+    new(*args).to_s
+  end
+
 end
