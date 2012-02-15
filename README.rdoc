@@ -32,3 +32,33 @@ ranges of opening hours can be represented.
 
   wrong_format = DayTimeRange.new("11 to 15", :separator => '..')
   Relativity::InvalidRangeFormatError: Maybe the range separator was not set correctly? Separator used was ".."
+
+  # normalize is intended for persisting a DayTime and DayTimeRange.
+
+  DayTime.normalize("8") # => "08:00:00"
+  DayTime.normalize(nil) # => nil
+  DayTimeRange.normalize("8..12") # => "08:00:00..12:00:00"
+  DayTimeRange.normalize("8 to 12", :separator => "..")
+  # => Relativity::InvalidRangeFormatError: Maybe the range separator\
+       was not set correctly? Separator used was ".."
+  DayTimeRange.normalize(nil) # => nil
+
+  # usage in ActiveRecord (>= 3.2.x)
+
+  class Shop < ActiveRecord::Base
+
+    def opening_hours=(dtr)
+      super(
+        begin
+          DayTimeRange.normalize(dtr, separator => '..')
+        rescue Relativity::FormatError
+          nil # or set a special error code here
+        end)
+      end
+    end
+
+    def opening_hours
+      dtr = super and DayTimeRange.new(dtr, :separator => '..')
+    end
+
+  end

@@ -1,3 +1,8 @@
+0.0.8 2012-02-15:
+* DayTime.normalize
+* DayTimeRange.normalize
+* useful for persisting to a database column
+
 0.0.7 2012-02-15:
 * Allow arbitrary separator and parse it automatically
 * The default_separator for DayTimeRange is removed
