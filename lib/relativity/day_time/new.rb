@@ -2,7 +2,7 @@ module DayTime::New
 
   attr_reader :seconds_since_midnight
 
-  def initialize(first= nil, minutes = nil, seconds = nil, nano_seconds = nil)
+  def initialize(first = (no_args = true; nil), minutes = nil, seconds = nil, nano_seconds = nil)
     super()
     case first
     when Integer
@@ -14,6 +14,7 @@ module DayTime::New
       hh, mm, ss = hh_mm_ss_from_string(first)
       nn = 0
     else
+      raise InvalidFormatError unless no_args
       t = Time.new
       hh = t.hour
       mm = t.min

@@ -3,7 +3,11 @@ require 'spec_helper'
 describe DayTime do
 
   it "new builds a DayTime" do
-    lambda { subject }.should_not raise_error
+    subject
+  end
+
+  it "new(nil) fails" do
+    lambda {DayTime.new(nil)}.should raise_error
   end
 
   it "new creates a DayTime close to now" do
