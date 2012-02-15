@@ -7,7 +7,7 @@ describe DayTimeRange do
   end
 
   it "new(nil) raises error" do
-    lambda {DayTimeRange.new(nil)}.should raise_error
+    lambda {DayTimeRange.new(nil)}.should raise_error Relativity::InvalidRangeFormatError
   end
 
   it "start day_time is correct" do

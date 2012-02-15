@@ -10,7 +10,7 @@ class DayTimeRange
       when String
         start_end_from_string(first, second)
       else
-        raise InvalidRangeFormatError
+        raise Relativity::InvalidRangeFormatError
       end
   end
 

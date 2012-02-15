@@ -7,7 +7,7 @@ describe DayTime do
   end
 
   it "new(nil) fails" do
-    lambda {DayTime.new(nil)}.should raise_error
+    lambda {DayTime.new(nil)}.should raise_error(Relativity::InvalidFormatError)
   end
 
   it "new creates a DayTime close to now" do

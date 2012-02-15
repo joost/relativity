@@ -14,7 +14,7 @@ module DayTime::New
       hh, mm, ss = hh_mm_ss_from_string(first)
       nn = 0
     else
-      raise InvalidFormatError unless no_args
+      raise Relativity::InvalidFormatError unless no_args
       t = Time.new
       hh = t.hour
       mm = t.min
