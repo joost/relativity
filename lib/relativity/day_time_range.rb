@@ -26,6 +26,10 @@ class DayTimeRange
     start.to_s + @separator + self.end.to_s
   end
 
+  def self.normalize(*args)
+    new(*args).to_s
+  end
+
 private
 
   def start_end_from_string(input, options)
