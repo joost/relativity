@@ -2,9 +2,6 @@ require 'spec_helper'
 
 describe DayTimeRange do
 
-  it "default separator is ' until '" do
-    DayTimeRange.default_separator.should == ' until '
-  end
 
   it "start time is correct" do
     dtr = DayTimeRange.new("8 until 11", :separator => " until ")
@@ -21,14 +18,6 @@ describe DayTimeRange do
     dtr.start.should == DayTime.new(8)
   end
 
-  it "InvalidRangeFormatError is raised with incorrect separator format" do
-    lambda {DayTimeRange.new("8..11")}.should raise_error Relativity::InvalidRangeFormatError
-  end
-
-  it "Exception with separator message is raised with incorrect separator format" do
-    lambda {DayTimeRange.new("8..11")}.should raise_error 'Maybe the range separator was not set correctly? Separator used was " until "'
-  end
-
   it "parsing with other separator remembers the separator" do
     dtr = DayTimeRange.new("8 - 11", :separator => " - ")
     dtr.separator.should == " - "
@@ -42,7 +31,21 @@ describe DayTimeRange do
 
   it "not setting separator returns default_separator" do
     dtr = DayTimeRange.new("8 until 11")
-    dtr.separator.should == dtr.class.default_separator
+    dtr.separator.should == " until "
+  end
+
+  it "not setting separator with different separator does not reais exception" do
+    dtr = DayTimeRange.new("8..11")
+  end
+
+  it "not setting separator returns correct separator" do
+    dtr = DayTimeRange.new("8..11")
+    dtr.separator.should == '..'
+  end
+
+  it "not setting separator returns correct full result" do
+    dtr = DayTimeRange.new("8..11")
+    dtr.to_s.should == "08:00:00..11:00:00"
   end
 
 end

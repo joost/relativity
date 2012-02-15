@@ -24,19 +24,24 @@ class DayTimeRange
     start.to_s + @separator + self.end.to_s
   end
 
-  def self.default_separator
-    " until "
-  end
-
 private
 
   def start_end_from_string(input, options)
-    @separator = (options && options[:separator]) || self.class.default_separator
-    esc_separator = Regexp.escape(@separator)
-    matcher = '\A(?<start>.+)' + esc_separator + '(?<end>.+)\Z'
+    @separator = options && options[:separator]
+    if @separator
+      esc_separator = Regexp.escape(@separator)
+      matcher = '\A(?<start>.+)' + esc_separator + '(?<end>.+)\Z'
+    else
+      matcher = '\A' +
+                '(?<start>' + DayTime.internal_matcher + ')' +
+                '(?<separator>[^\d]+)' +
+                '(?<end>' + DayTime.internal_matcher + ')' +
+                '\Z'
+    end
     r = Regexp.new(matcher)
     matchdata = r.match(input)
     raise Relativity::InvalidRangeFormatError.new(:separator => @separator) if matchdata.nil?
+    @separator ||= matchdata[:separator]
     return [DayTime.new(matchdata[:start]), DayTime.new(matchdata[:end])]
   end
 
