@@ -9,6 +9,8 @@ class DayTimeRange
       case first
       when String
         start_end_from_string(first, second)
+      else
+        raise InvalidRangeFormatError
       end
   end
 

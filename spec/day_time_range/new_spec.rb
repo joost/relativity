@@ -6,6 +6,10 @@ describe DayTimeRange do
     DayTimeRange.new("8 until 11").should_not be_nil
   end
 
+  it "new(nil) raises error" do
+    lambda {DayTimeRange.new(nil)}.should raise_error
+  end
+
   it "start day_time is correct" do
     dtr = DayTimeRange.new("8 until 11")
     dtr.start.should == DayTime.new(8)
