@@ -1,3 +1,7 @@
+0.0.7 2012-02-15:
+* Allow arbitrary separator and parse it automatically
+* The default_separator for DayTimeRange is removed
+
 0.0.6 2012-02-07:
 * DayTimeRange input/output now useable
 * DayTimeRange exceptions improved

@@ -1,7 +1,6 @@
 Features to be implemented:
 
 * Add a '...' range (up to, but not including)
-* ActiveRecord coupling (marshal to and from string)
 
 * WeekTime
 * WeekDay
