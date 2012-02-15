@@ -1,12 +1,15 @@
 module Relativity
 
-  class InternalError < RuntimeError
+  class InternalError < ::RuntimeError
   end
 
-  class InvalidFormatError < ArgumentError
+  class FormatError < ::ArgumentError
   end
 
-  class InvalidRangeFormatError < ArgumentError
+  class InvalidFormatError < FormatError
+  end
+
+  class InvalidRangeFormatError < FormatError
     def initialize(options = {})
       @options = options
     end

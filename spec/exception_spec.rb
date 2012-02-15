@@ -8,12 +8,16 @@ module Relativity
       Relativity::InternalError.new.should be_a(RuntimeError)
     end
 
-    it "InvalidFormatError derived from ArgumentError" do
-      Relativity::InvalidFormatError.new.should be_a(ArgumentError)
+    it "FormatError derived from ArgumentError" do
+      Relativity::FormatError.new.should be_a(ArgumentError)
     end
 
-    it "InvalidRangeFormatError derived from ArgumentError" do
-      Relativity::InvalidRangeFormatError.new.should be_a(ArgumentError)
+    it "InvalidFormatError derived from FormatError" do
+      Relativity::InvalidFormatError.new.should be_a(Relativity::FormatError)
+    end
+
+    it "InvalidRangeFormatError derived from FormatError" do
+      Relativity::InvalidRangeFormatError.new.should be_a(Relativity::FormatError)
     end
 
     it "InvalidRangeFormatError accepts a hash with separator" do
