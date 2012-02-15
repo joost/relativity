@@ -18,4 +18,8 @@ describe DayTimeRange, "normalize" do
     DayTimeRange.normalize(nil).should be_nil
   end
 
+  it "with nil, second_arg returns nil" do
+    DayTimeRange.normalize(nil, :second_arg).should be_nil
+  end
+
 end

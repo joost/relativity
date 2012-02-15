@@ -27,7 +27,7 @@ class DayTimeRange
   end
 
   def self.normalize(*args)
-    return nil if args == [nil]
+    return nil if args[0] == nil
     new(*args).to_s
   end
 
