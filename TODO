@@ -1,6 +1,9 @@
 Features to be implemented:
 
+* new/normalize checks hours, minutes, seconds, nanoseconds
+  in range (0...24, 0...60, 0...60, 0...1000_000_000)
 * Add a '...' range (up to, but not including)
+* comparisons (`==`, `include?`, ...)
 
 * WeekTime
 * WeekDay
