@@ -7,6 +7,8 @@ A relative time object, relative to a day or a week, is useful to describe
 e.g. opening hours of a business. Time ranges are built on top, so the
 ranges of opening hours can be represented.
 
+Not compatible with ruby 1.8.x
+
 == Example
 
   require 'relativity'
@@ -26,7 +28,7 @@ ranges of opening hours can be represented.
   dtr = DayTimeRange.new("8 to 12:30") # => 08:00:00 to 12:30:00
   dtr.start # => 08:00:00
   dtr.end # => 12:30:00
-  dtr.to_s # => "08:00:00 until 12:30:00"
+  dtr.to_s # => "08:00:00 to 12:30:00"
 
   night_shift = DayTimeRange.new("21:45..06:05") # => 21:45:00..06:05:00
 
@@ -43,7 +45,7 @@ ranges of opening hours can be represented.
        was not set correctly? Separator used was ".."
   DayTimeRange.normalize(nil) # => nil
 
-  # usage in ActiveRecord (>= 3.2.x)
+  # persisting in ActiveRecord (>= 3.2.x)
 
   class Shop < ActiveRecord::Base
 
