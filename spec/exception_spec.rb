@@ -21,8 +21,7 @@ module Relativity
     end
 
     it "InvalidRangeFormatError accepts a hash with separator" do
-      lambda {e = Relativity::InvalidRangeFormatError.new(:separator => "abcd")}.
-        should_not raise_error
+      Relativity::InvalidRangeFormatError.new(:separator => "abcd") #should_not raise_error
     end
 
     it "InvalidRangeFormatError gives a tailured message" do
