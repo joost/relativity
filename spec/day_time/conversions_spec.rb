@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'bigdecimal/util'
 
 describe DayTime do
 
@@ -31,11 +32,34 @@ describe DayTime do
   end
 
   it "seconds_since_midnight" do
-    lambda { subject.seconds_since_midnight }.should_not raise_error
+    subject.seconds_since_midnight # should_not raise_error
   end
 
   it "seconds_since_midnight should be BigDecimal" do
     subject.seconds_since_midnight.should be_kind_of(BigDecimal)
   end
 
+  context "seconds since midnight" do
+
+    it "zero is correct" do
+      DayTime::Conversions.seconds_since_midnight(0,0,0,0).should == "0".to_d
+    end
+
+    it "hours are correct" do
+      DayTime::Conversions.seconds_since_midnight(1,0,0,0).should == "3600".to_d
+    end
+
+    it "minutes are correct" do
+      DayTime::Conversions.seconds_since_midnight(0,1,0,0).should == "60".to_d
+    end
+
+    it "seconds are correct" do
+      DayTime::Conversions.seconds_since_midnight(0,0,1,0).should == "1".to_d
+    end
+
+    it "nanoseconds are correct" do
+      DayTime::Conversions.seconds_since_midnight(0,0,0,1000).should == "0.000001".to_d
+    end
+
+  end
 end

@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 module DayTime::Conversions
 
   def hours
@@ -20,6 +22,10 @@ module DayTime::Conversions
 
   def to_s
     [hours, minutes, seconds].map{|e| rjust_2_0(e.to_s)}.join(self.class.default_separator)
+  end
+
+  def self.seconds_since_midnight(hh, mm, ss, nn)
+    ((hh * 3600) + (mm * 60) + ss + BigDecimal("#{nn}")/1000000000)%(24*3600)
   end
 
 private

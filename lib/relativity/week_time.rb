@@ -1,6 +1,5 @@
 class WeekTime
 
-  require 'bigdecimal'
   require 'time'
 
   attr_reader :seconds_since_sunday_midnight
@@ -22,8 +21,8 @@ class WeekTime
       nn = t.nsec
     end
 
-    seconds_since_midnight = ((hh * 3600) + (mm * 60) + ss + BigDecimal(nn)/BigDecimal(1000000000))%(24*3600)
-    @seconds_since_sunday_midnight = week_day_d * 24 * 3600 + seconds_since_midnight
+    day_time = DayTime.new(hh,mm,ss,nn)
+    @seconds_since_sunday_midnight = (week_day_d * 24 * 3600) + day_time.seconds_since_midnight
   end
 
 end
